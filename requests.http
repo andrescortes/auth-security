@@ -11,3 +11,14 @@ Content-Type: application/json
   "categoryId": 10,
   "price": 10.5
 }
+
+### POST create customer
+POST http://localhost:9000/api/v1/customers
+Content-Type: application/json
+
+{
+  "name": "juan",
+  "username": "juanc",
+  "password": "12345678",
+  "repeatedPassword": "12345678"
+}

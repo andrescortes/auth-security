@@ -2,6 +2,7 @@ package com.app.auth.persistence.entity;
 
 import com.app.auth.util.Role;
 import com.app.auth.util.RolePermission;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -10,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,11 +29,13 @@ import java.util.Objects;
 @Table(name = "users_app")
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder(toBuilder = true)
 public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true, nullable = false)
     private String name;
     private String username;
     private String password;
