@@ -1,0 +1,13 @@
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=IntelliJ IDEA
+
+### POST create product
+POST http://localhost:9000/api/v1/products
+Content-Type: application/json
+
+{
+  "name": "generic product",
+  "categoryId": 10,
+  "price": 10.5
+}

@@ -1,0 +1,37 @@
+services:
+  app:
+    container_name: app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=secret
+      - DB_HOSTNAME=db
+      - DB_PORT=5432
+      - DB_NAME=auth_db
+    networks:
+      - spring
+    depends_on:
+      - db
+  db:
+    image: postgres:16-alpine
+    container_name: db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=auth_db
+    networks:
+      - spring
+    volumes:
+      - data-postgres:/var/lib/postgresql/data
+
+volumes:
+  data-postgres:
+
+networks:
+  spring:
+    name: spring
+    driver: bridge
